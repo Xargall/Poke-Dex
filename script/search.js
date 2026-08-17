@@ -27,7 +27,6 @@ async function searchPokemon() {
 
     if (input.length === 0) {
         document.getElementById("search_hint").classList.remove("visible");
-        setMoreBtn(false);
         resetSearch();
         return;
     }
@@ -35,16 +34,21 @@ async function searchPokemon() {
     const isNumber = !isNaN(input) && input.trim() !== "";
     if (!isNumber && input.length < 3) {
         document.getElementById("search_hint").classList.add("visible");
+        isSearchMode = true;
         setMoreBtn(true);
         return;
     }
 
     document.getElementById("search_hint").classList.remove("visible");
-    document.getElementById("loader").classList.add("d_none");
-    document.querySelector(".load_more button").disabled = true;
+    isSearchMode = true;
+    setMoreBtn(true);
 
     const cardRef = document.getElementById("content");
     if (!searchLocally(input, cardRef)) await searchGlobally(input, cardRef);
+
+    const loader = document.getElementById("loader");
+    loader.classList.remove("active");
+    loader.classList.add("d_none");
 }
 
 function searchLocally(input, cardRef) {
@@ -59,7 +63,6 @@ function searchLocally(input, cardRef) {
         cardRef.innerHTML += getPokemonCardTemplate(index);
         renderCardContent(index);
     });
-    setMoreBtn(false);
     return true;
 }
 
@@ -73,7 +76,6 @@ async function searchGlobally(input, cardRef) {
     }
     await fetchSearchData(matches);
     renderSearchCards(cardRef);
-    setMoreBtn(false);
 }
 
 async function fetchSearchData(matches) {
@@ -92,7 +94,9 @@ async function fetchSearchData(matches) {
     searchDescriptions = results.map(([, description]) => description);
     await Promise.all(searchResults.map((info) => getFrontPicture(info.id)));
     isSearchMode = true;
-    document.getElementById("loader").classList.add("d_none");
+    const loader = document.getElementById("loader");
+    loader.classList.remove("active");
+    loader.classList.add("d_none");
 }
 
 function renderSearchCards(cardRef) {

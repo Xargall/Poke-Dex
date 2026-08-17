@@ -1,116 +1,128 @@
 @media screen and (min-width: 1440px) {
-  .pokemon_box {
-    padding: 8px max(50px, calc(50% - 720px));
-  }
+	.pokemon_box {
+		padding: 8px max(50px, calc(50% - 720px));
+	}
 
-  .main_content {
-    padding: 50px max(50px, calc(50% - 720px));
-  }
+	.main_content {
+		padding: 50px max(50px, calc(50% - 720px));
+	}
 
-  footer {
-    padding: 0 max(50px, calc(50% - 720px));
-  }
+	footer {
+		padding: 0 max(50px, calc(50% - 720px));
+	}
 }
 
 @media screen and (max-width: 831px) {
-  .container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 300px;
-    gap: 8px;
-  }
+	.container {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		max-width: 300px;
+		gap: 8px;
+	}
 
-  .search_wrapper {
-    margin-bottom: 16px;
-  }
+	.search_wrapper {
+		margin-bottom: 16px;
+	}
 
-  .pokemon_box {
-    padding: 16px;
-  }
+	.pokemon_box {
+		padding: 16px;
+	}
 
-  .headline {
-    flex-direction: column;
-  }
+	.headline {
+		flex-direction: column;
+	}
 
-  .headline h1 {
-    font-size: clamp(3rem, calc(2.423rem + 3.077vw), 4rem);
-    margin-top: 16px;
-  }
+	.headline h1 {
+		font-size: clamp(3rem, calc(2.423rem + 3.077vw), 4rem);
+		margin-top: 16px;
+	}
 
-  input {
-    width: 100%;
-    max-width: 300px;
-  }
+	input {
+		width: 100%;
+		max-width: 300px;
+	}
 
-  .evolution {
-    gap: 8px;
-  }
+	.evolution {
+		gap: 8px;
+	}
 
-  .battle {
-    display: none;
-  }
+	.battle {
+		display: none;
+	}
 
-  .mart {
-    display: none;
-  }
+	.mart {
+		display: none;
+	}
 
-  footer {
-    justify-content: center;
-  }
+	footer {
+		justify-content: center;
+	}
 }
 
-@media screen and (max-width: 480px) {
-  .card_section {
-    width: calc(50vw - 24px); /* zwei Karten nebeneinander */
-    height: auto;
-    min-height: 180px;
-  }
+@media screen and (min-width: 400px) and (max-width: 547px) {
+	.main_content {
+		padding: 10px;
+	}
 
-  .card_body {
-    flex-direction: column-reverse; /* Bild oben, Types unten */
-    align-items: center;
-    padding: 0 8px 8px;
-    gap: 4px;
-  }
+	.card_section {
+		width: calc(50vw - 35px); /* zwei Karten nebeneinander */
+		height: auto;
+		min-height: 180px;
+	}
 
-  .pkm_sprite img {
-    width: 80px;
-    height: 80px;
-  }
+	.card_body {
+		flex-direction: column-reverse; /* Bild oben, Types unten */
+		align-items: center;
+		padding: 0 8px 8px;
+		gap: 4px;
+	}
 
-  .body_left {
-    width: 100%;
-    flex-direction: row; /* Types und Pokeball nebeneinander */
-    justify-content: space-between;
-    padding: 0 4px 4px;
-  }
+	.pkm_sprite img {
+		width: 80px;
+		height: 80px;
+	}
 
-  .types {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 4px;
-  }
+	.body_left {
+		width: 100%;
+		flex-direction: row; /* Types und Pokeball nebeneinander */
+		justify-content: space-between;
+		padding: 0 4px 4px;
+	}
 
-  .type_tag {
-    width: auto;
-    padding: 0 10px;
-    font-size: 0.75rem;
-  }
+	.types {
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 4px;
+	}
 
-  .poke_box {
-    transform: none;
-  }
+	.type_tag {
+		width: auto;
+		padding: 0 10px;
+		font-size: 0.75rem;
+	}
 
-  .battle {
-    display: none;
-  }
+	.poke_box {
+		transform: none;
+	}
 
-  .mart {
-    display: none;
-  }
+	.battle {
+		display: none;
+	}
 
-  footer {
-    justify-content: center;
-  }
+	.mart {
+		display: none;
+	}
+
+	footer {
+		justify-content: center;
+	}
+}
+
+@media screen and (max-width: 399px) {
+	.main_content {
+		padding: 10px;
+	}
+
+  
 }

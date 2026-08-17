@@ -121,6 +121,7 @@ function setMoreBtn(loading) {
 // MODAL
 // ============================================
 function openDetails(i, fromSearch = false) {
+  document.body.classList.add("no_scroll");
   currentIndex = i;
   isSearchMode = fromSearch;
   lastFocusedElement = document.activeElement;
@@ -145,6 +146,7 @@ function closeDetails() {
   const detailRef = document.getElementById("details");
   detailRef.close();
   detailRef.classList.remove("opened");
+  document.body.classList.remove("no_scroll");
   lastFocusedElement?.focus();
 }
 
