@@ -3,54 +3,78 @@
    Mathias Mayer · 2026
    ============================================
    Inhaltsverzeichnis:
-   1.  Layout – Main & Content
-   2.  Header & Suche
-   3.  Pokémon-Karten
-   4.  Loader & Show-More
-   5.  Pokeball-Button
-   6.  Holo-Effekt
-   7.  Footer
-   8.  API-Fehler Banner
-   9.  Accessibility
+   1.  Design Tokens
+   2.  Layout – Main & Content
+   3.  Header & Suche
+   4.  Pokémon-Karten
+   5.  Loader & Show-More
+   6.  Pokeball-Button
+   7.  Holo-Effekt
+   8.  Footer
+   9.  API-Fehler Banner
+   10. Accessibility
    ============================================ */
 
 /* ============================================
-   1. LAYOUT – MAIN & CONTENT
+   1. DESIGN TOKENS
    ============================================ */
+
+:root {
+  --bg-deep:     #0d0f18;
+  --bg-surface:  #13161f;
+  --bg-raised:   #1c2030;
+  --bg-card:     #1e2235;
+
+  --accent-gold:  #f4d03f;
+  --accent-gold2: #e6b800;
+  --accent-red:   #a4121c;   /* nur für Dialog-Buttons */
+  --accent-red2:  #6b0b12;
+
+  --text-primary:   #eef0f6;
+  --text-secondary: #8a90a8;
+  --text-muted:     #4a5068;
+
+  --border-subtle:  rgba(255, 255, 255, 0.07);
+  --border-card:    rgba(255, 255, 255, 0.1);
+
+  --radius-card: 35px;
+  --radius-btn:  50px;
+}
+
+/* ============================================
+   2. LAYOUT – MAIN & CONTENT
+   ============================================ */
+
+body {
+  background: var(--bg-deep);
+}
 
 .main_content {
   display: flex;
   flex-wrap: wrap;
   flex: 1;
   justify-content: center;
-  padding: 50px;
-  background: #6b0d14;
+  padding: 40px 50px;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 0%,   rgba(111, 53, 252, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 100%,  rgba(99, 144, 240, 0.06) 0%, transparent 60%),
+    var(--bg-deep);
 }
 
 /* ============================================
-   2. HEADER & SUCHE
+   3. HEADER & SUCHE
    ============================================ */
 
 .pokemon_box {
   display: flex;
   justify-content: center;
-  background-color: #cdc9c9;
+  background-color: var(--bg-surface);
   width: 100%;
-  padding: 8px 50px;
-  border: 1px solid white;
-  border-radius: 2px;
-  box-shadow:
-    0 1px 0 1px black,
-    inset 0 1px 0 1px black,
-    0 0 0 1px black,
-    inset 0 0 0 1px black;
-  background-position: center;
-  background-repeat: repeat;
-  background-size: contain;
-  background-blend-mode: soft-light;
-
+  padding: 14px 50px 12px;
+  border: none;
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: 0 1px 0 var(--border-subtle);
   position: relative;
-  padding-top: 14px;
 }
 
 .pokemon_box::before {
@@ -59,30 +83,21 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 6px;
+  height: 3px;
   background: repeating-linear-gradient(
     90deg,
-    #ee8130 0px,
-    #ee8130 40px,
-    #6390f0 40px,
-    #6390f0 80px,
-    #7ac74c 80px,
-    #7ac74c 120px,
-    #f7d02c 120px,
-    #f7d02c 160px,
-    #f95587 160px,
-    #f95587 200px,
-    #96d9d6 200px,
-    #96d9d6 240px,
-    #a33ea1 240px,
-    #a33ea1 280px,
-    #6f35fc 280px,
-    #6f35fc 320px,
-    #735797 320px,
-    #735797 360px,
-    #b7b7ce 360px,
-    #b7b7ce 400px
+    #ee8130 0px,   #ee8130 40px,
+    #6390f0 40px,  #6390f0 80px,
+    #7ac74c 80px,  #7ac74c 120px,
+    #f7d02c 120px, #f7d02c 160px,
+    #f95587 160px, #f95587 200px,
+    #96d9d6 200px, #96d9d6 240px,
+    #a33ea1 240px, #a33ea1 280px,
+    #6f35fc 280px, #6f35fc 320px,
+    #735797 320px, #735797 360px,
+    #b7b7ce 360px, #b7b7ce 400px
   );
+  opacity: 0.85;
 }
 
 .headline {
@@ -94,172 +109,175 @@
 
 .headline h1 {
   font-size: 5rem;
+  color: var(--text-primary);
+  letter-spacing: -1px;
+}
+
+.headline_badge {
+  font-size: 0.55rem;
+  background: var(--accent-gold);
+  color: #1a1200;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  vertical-align: middle;
+  position: relative;
+  top: -10px;
+  font-family: "Pixelify Sans", sans-serif;
 }
 
 .search_wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.container {
+  display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .search_wrapper button {
-  background: #a4121c;
-  color: #fff;
+  background: var(--bg-raised);
+  color: var(--text-secondary);
   font-family: "Pixelify Sans", sans-serif;
   font-size: 14px;
-  border: none;
+  border: 1px solid var(--border-card);
   border-radius: 50%;
   width: 32px;
   height: 32px;
   cursor: pointer;
-  box-shadow: 0 3px 0 #6b0b12;
+  transition: background 0.15s, color 0.15s;
+}
+
+.search_wrapper button:hover {
+  background: var(--accent-gold);
+  color: #1a1200;
+  border-color: var(--accent-gold);
 }
 
 .search_wrapper button:active {
-  transform: translateY(3px);
-  box-shadow: 0 0 0 #6b0b12;
+  transform: translateY(1px);
 }
 
 input {
-  width: 300px;
-  height: 30px;
+  width: 280px;
+  height: 34px;
+  padding: 0 12px;
   font-family: "Pixelify Sans", sans-serif;
-  border: 1px solid white;
-  border-radius: 2px;
-  box-shadow:
-    0 1px 0 1px black,
-    inset 0 1px 0 1px black,
-    0 0 0 1px black,
-    inset 0 0 0 1px black;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  background: var(--bg-raised);
+  border: 1px solid var(--border-card);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input::placeholder {
+  color: var(--text-muted);
+}
+
+input:focus {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(244, 208, 63, 0.12);
 }
 
 #search_hint {
   width: 100%;
-  color: #a4121c;
+  color: var(--accent-gold);
   font-family: "Pixelify Sans", sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   opacity: 0;
   transition: opacity 0.2s ease;
+  letter-spacing: 0.3px;
 }
 
 #search_hint.visible {
   opacity: 1;
 }
 
-.type_stripe {
-  height: 6px;
-  width: calc(100% + 100px); /* über den padding hinaus */
-  margin: -8px -50px 12px;
-  background: repeating-linear-gradient(
-    90deg,
-    #ee8130 0px,
-    #ee8130 40px,
-    #6390f0 40px,
-    #6390f0 80px,
-    #7ac74c 80px,
-    #7ac74c 120px,
-    #f7d02c 120px,
-    #f7d02c 160px,
-    #f95587 160px,
-    #f95587 200px,
-    #96d9d6 200px,
-    #96d9d6 240px,
-    #a33ea1 240px,
-    #a33ea1 280px,
-    #6f35fc 280px,
-    #6f35fc 320px,
-    #735797 320px,
-    #735797 360px,
-    #b7b7ce 360px,
-    #b7b7ce 400px
-  );
-}
-
-.headline_badge {
-  font-size: 0.6rem;
-  background: #6b0d14;
-  color: white;
-  padding: 3px 10px;
-  border-radius: 20px;
-  letter-spacing: 2px;
-  font-weight: 600;
-  vertical-align: middle;
-  position: relative;
-  top: -8px;
-}
-
 /* ============================================
-   3. POKÉMON-KARTEN
+   4. POKÉMON-KARTEN
    ============================================ */
 
 .card_section {
-  /* Layout */
   width: 250px;
   height: 200px;
-  margin: 12px;
+  margin: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  /* Aussehen */
-  border-radius: 35px;
-  border: 2px solid black;
-  background-color: #cdc9c9;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-card);
+  background-color: var(--bg-card);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
   background-blend-mode: overlay;
-  box-shadow: 10px 10px 10px #000;
 
-  /* Holo-Effekt Basis */
+  /* Typ-farbiger Ambient-Glow – über CSS Custom Property steuerbar */
+  --glow-color: rgba(160, 160, 180, 0.18);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255,255,255,0.05) inset,
+    0 0 20px 4px var(--glow-color);
+
   position: relative;
   overflow: hidden;
   transform-style: preserve-3d;
   container-type: inline-size;
-  transform: perspective(600px) rotateY(var(--rx, 0deg))
-    rotateX(var(--ry, 0deg));
+  transform: perspective(600px) rotateY(var(--rx, 0deg)) rotateX(var(--ry, 0deg));
   will-change: transform;
 
-  /* Holo-Farben Fallback (Normal-Typ) */
   --holo-c1: #c8c8a0;
   --holo-c2: #a8a878;
   --holo-c3: #d0d0b0;
 
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .card_section:hover {
-  transform: perspective(600px) rotateY(var(--rx, 0deg))
-    rotateX(var(--ry, 0deg)) scale(1.05);
+  transform: perspective(600px) rotateY(var(--rx, 0deg)) rotateX(var(--ry, 0deg)) scale(1.05);
+  border-color: rgba(255, 255, 255, 0.18);
   box-shadow:
-    0 0 8px 1px rgba(120, 200, 255, 0.25),
-    10px 10px 10px #000;
+    0 8px 40px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+    0 0 32px 8px var(--glow-color);
 }
 
 .card_head {
   display: flex;
   justify-content: space-between;
-  padding: 8px 16px;
+  align-items: flex-start;
+  padding: 12px 16px 6px;
 }
 
 .card_head h3 {
-  font-size: 1rem;
+  font-family: "Boogaloo", system-ui, sans-serif;
+  font-size: 1.1rem;
   line-height: 1.2;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--text-primary);
+  letter-spacing: 0.3px;
 }
 
-.card_head h3.name_md {
-  font-size: 0.82rem;
-}
-.card_head h3.name_sm {
-  font-size: 0.65rem;
+.card_head h3.name_md { font-size: 0.92rem; }
+.card_head h3.name_sm { font-size: 0.72rem; }
+
+.card_head p {
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 0.75rem;
+  /* Deutlich heller – war kaum lesbar auf dunklem Grund */
+  color: rgba(255, 255, 255, 0.45);
+  flex-shrink: 0;
 }
 
 .card_body {
@@ -281,23 +299,28 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .type_tag {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 30px;
+  width: 76px;
+  height: 26px;
   border-radius: 25px;
   line-height: 120%;
-  box-shadow: 0 0 10px rgba(3, 7, 18, 0.56);
+  font-size: 0.78rem;
+  font-family: "Pixelify Sans", sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  color: rgba(255,255,255,0.93);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
 .pkm_sprite > img {
   width: 123px;
   height: 120px;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
 }
 
 .detail_sprite img,
@@ -312,7 +335,7 @@ input {
 }
 
 /* ============================================
-   4. LOADER & SHOW MORE
+   5. LOADER & SHOW MORE
    ============================================ */
 
 .d_none {
@@ -348,8 +371,9 @@ input {
   border-radius: 50%;
   position: relative;
   overflow: hidden;
-  border: 3px solid;
+  border: 3px solid #222;
   animation: spin 0.8s linear infinite;
+  box-shadow: 0 0 30px rgba(244, 208, 63, 0.3);
 }
 
 .pokeball_load::after {
@@ -357,8 +381,8 @@ input {
   position: absolute;
   width: 60px;
   height: 30px;
-  background-color: red;
-  border-bottom: 4px solid;
+  background-color: #e74c3c;
+  border-bottom: 4px solid #222;
   top: -4px;
 }
 
@@ -368,7 +392,7 @@ input {
   background-color: #fff;
   width: 10px;
   height: 10px;
-  border: 4px solid;
+  border: 4px solid #222;
   border-radius: 50%;
   bottom: 18px;
   right: 18px;
@@ -376,64 +400,53 @@ input {
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
 .load_more {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 16px 40px;
-  background: #6b0d14;
+  padding: 16px 16px 48px;
+  background: var(--bg-deep);
 }
 
 .load_more button {
-  background: #cdc9c9;
-  color: black;
+  background: transparent;
+  color: var(--text-primary);
   font-family: "Pixelify Sans", sans-serif;
-  font-size: 18px;
-  letter-spacing: 1px;
-  border: none;
-  border-radius: 50px;
-  padding: 16px 48px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-btn);
+  padding: 14px 48px;
   cursor: pointer;
   text-transform: uppercase;
-  box-shadow:
-    0 6px 0 black,
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
-  transition:
-    transform 0.08s,
-    box-shadow 0.08s;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.08s;
 }
 
 .load_more button:hover {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: #1a1200;
   transform: translateY(-2px);
-  box-shadow:
-    0 8px 0 #6b0b12,
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 .load_more button:active {
-  transform: translateY(4px);
-  box-shadow:
-    0 2px 0 #6b0b12,
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transform: translateY(1px);
 }
 
 .load_more button:disabled {
-  background: #888;
-  box-shadow: 0 6px 0 #555;
+  background: transparent;
+  border-color: var(--text-muted);
+  color: var(--text-muted);
   cursor: not-allowed;
   transform: none;
 }
 
 /* ============================================
-   5. POKEBALL-BUTTON
+   6. POKEBALL-BUTTON
    ============================================ */
 
 .poke_box {
@@ -498,37 +511,21 @@ input {
 }
 
 @keyframes shake {
-  0% {
-    transform: translate(0, 0) rotate(0);
-  }
-  20% {
-    transform: translate(-10px, 0) rotate(-20deg);
-  }
-  30% {
-    transform: translate(10px, 0) rotate(20deg);
-  }
-  50% {
-    transform: translate(-10px, 0) rotate(-10deg);
-  }
-  60% {
-    transform: translate(10px, 0) rotate(10deg);
-  }
-  100% {
-    transform: translate(0, 0) rotate(0);
-  }
+  0%   { transform: translate(0, 0) rotate(0); }
+  20%  { transform: translate(-10px, 0) rotate(-20deg); }
+  30%  { transform: translate(10px, 0) rotate(20deg); }
+  50%  { transform: translate(-10px, 0) rotate(-10deg); }
+  60%  { transform: translate(10px, 0) rotate(10deg); }
+  100% { transform: translate(0, 0) rotate(0); }
 }
 
 @keyframes blink {
-  from {
-    background: #eee;
-  }
-  to {
-    background: #e74c3c;
-  }
+  from { background: #eee; }
+  to   { background: #e74c3c; }
 }
 
 /* ============================================
-   6. HOLO-EFFEKT
+   7. HOLO-EFFEKT
    ============================================ */
 
 .card__shine {
@@ -565,10 +562,7 @@ input {
     );
 
   background-blend-mode: screen, hue, hard-light;
-  background-size:
-    200% 700%,
-    300%,
-    200%;
+  background-size: 200% 700%, 300%, 200%;
   background-position:
     0% var(--posy, 50%),
     var(--posx, 50%) var(--posy, 50%),
@@ -598,25 +592,15 @@ input {
 }
 
 /* ============================================
-   7. FOOTER
+   8. FOOTER
    ============================================ */
 
 footer {
   width: 100%;
   height: 120px;
-  background-color: #cdc9c9;
+  background-color: var(--bg-surface);
   margin-top: auto;
-  border: 1px solid white;
-  border-radius: 2px;
-  box-shadow:
-    0 1px 0 1px black,
-    inset 0 1px 0 1px black,
-    0 0 0 1px black,
-    inset 0 0 0 1px black;
-  background-position: center;
-  background-repeat: repeat;
-  background-size: contain;
-  background-blend-mode: soft-light;
+  border-top: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -647,33 +631,34 @@ footer {
   align-items: center;
   gap: 2px;
   font-family: "Pixelify Sans", sans-serif;
-  font-size: 1.25rem;
-  color: #555;
+  font-size: 1rem;
+  color: var(--text-muted);
 }
 
 .footer_copy a {
-  color: #a4121c;
+  color: var(--accent-gold);
   text-decoration: none;
+  transition: opacity 0.15s;
 }
 
 .footer_copy a:hover {
-  text-decoration: underline;
+  opacity: 0.75;
 }
 
 .footer_copy_sub {
-  font-size: 1rem;
+  font-size: 0.8rem;
   text-align: center;
   opacity: 0.6;
 }
 
 /* ============================================
-   8. API-FEHLER BANNER
+   9. API-FEHLER BANNER
    ============================================ */
 
 .api_error {
   width: 100%;
-  background: #2d0a0a;
-  border-bottom: 2px solid #a4121c;
+  background: #1a0d0d;
+  border-bottom: 1px solid #a4121c;
   padding: 12px 50px;
   animation: slideDown 0.3s ease;
 }
@@ -711,7 +696,7 @@ footer {
 }
 
 .api_retry_btn {
-  background: #a4121c;
+  background: var(--accent-red);
   color: #fff;
   font-family: "Pixelify Sans", sans-serif;
   font-size: 0.85rem;
@@ -721,35 +706,27 @@ footer {
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
-  box-shadow: 0 3px 0 #6b0b12;
-  transition:
-    transform 0.08s,
-    box-shadow 0.08s;
+  box-shadow: 0 3px 0 var(--accent-red2);
+  transition: transform 0.08s, box-shadow 0.08s;
 }
 
 .api_retry_btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 0 #6b0b12;
+  box-shadow: 0 5px 0 var(--accent-red2);
 }
 
 .api_retry_btn:active {
   transform: translateY(2px);
-  box-shadow: 0 1px 0 #6b0b12;
+  box-shadow: 0 1px 0 var(--accent-red2);
 }
 
 @keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
 }
 
 /* ============================================
-   9. ACCESSIBILITY
+   10. ACCESSIBILITY
    ============================================ */
 
 .sr_only {

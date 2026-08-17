@@ -109,7 +109,7 @@ function renderStatChart(i, source = pokemonInfos) {
 
     new Chart(ctx, {
         type: "radar",
-        data: { labels: names, datasets: [{ label: "", data: values, borderWidth: 1 }] },
+        data: { labels: names, datasets: [{ label: "", data: values, borderWidth: 1, borderColor: "rgba(164,18,28,0.8)", backgroundColor: "rgba(164,18,28,0.15)", pointBackgroundColor: "rgba(164,18,28,0.9)" }] },
         options: {
             layout: { padding: { left: 35, right: 35, top: 10, bottom: 10 } },
             maintainAspectRatio: true,
@@ -117,10 +117,10 @@ function renderStatChart(i, source = pokemonInfos) {
             scales: {
                 r: {
                     beginAtZero: true,
-                    ticks: { stepSize: 50, backdropColor: "transparent", color: "#666", display: false },
-                    grid: { color: "rgba(0,0,0,0.15)" },
-                    angleLines: { color: "rgba(0,0,0,0.15)" },
-                    pointLabels: { color: "#333", font: { size: 9, weight: "bold", family: "Pixelify Sans" } },
+                    ticks: { stepSize: 50, backdropColor: "transparent", color: "transparent", display: false },
+                    grid: { color: "rgba(255,255,255,0.08)" },
+                    angleLines: { color: "rgba(255,255,255,0.08)" },
+                    pointLabels: { color: "#8a90a8", font: { size: 9, weight: "bold", family: "Pixelify Sans" } },
                 },
             },
             plugins: { legend: { display: false } },

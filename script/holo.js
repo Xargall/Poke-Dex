@@ -36,11 +36,21 @@ function getHoloColors(types) {
     return [colors1[0], colors2[1], colors1[2]];
 }
 
+// Typ-Glow: c1 als Basis, aber mit niedrigem Alpha für subtilen Ambient-Glow
+function hexToGlow(hex, alpha = 0.22) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
 function applyHoloColors(card, types) {
     const [c1, c2, c3] = getHoloColors(types);
     card.style.setProperty("--holo-c1", c1);
     card.style.setProperty("--holo-c2", c2);
     card.style.setProperty("--holo-c3", c3);
+    // Typ-farbiger Glow – subtil, immer sichtbar (nicht nur beim Hover)
+    card.style.setProperty("--glow-color", hexToGlow(c1));
 }
 
 // ============================================

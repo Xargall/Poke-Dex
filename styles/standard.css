@@ -6,18 +6,25 @@
 
 html {
 	font-size: 16px;
-	font-family: "Sniglet";
+	/* Boogaloo für alles Lesbare – rund, verspielt, aber klar */
+	font-family: "Boogaloo", system-ui, sans-serif;
 }
 
 body {
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
+	background: #0d0f18;
+	color: #eef0f6;
 }
 
 .no_scroll {
 	overflow: hidden;
 }
+
+/* ============================================
+   TYPE BACKGROUNDS – für Karten & Dialog
+   ============================================ */
 
 .normal {
 	background: #a8a77a;

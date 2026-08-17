@@ -15,41 +15,44 @@
    ============================================ */
 
 dialog {
-  border: none;
-  padding: 0;
-  background-color: white;
-  width: min(350px, calc(100vw - 24px));
-  height: 600px;
-  border-radius: 40px;
-  position: fixed;
-  inset: 0;
-  margin: auto;
-  overflow: hidden;
+	border: none;
+	padding: 0;
+	background-color: #13161f;
+	width: min(350px, calc(100vw - 24px));
+	height: 600px;
+	border-radius: 40px;
+	position: fixed;
+	inset: 0;
+	margin: auto;
+	overflow: hidden;
+	box-shadow:
+		0 24px 80px rgba(0, 0, 0, 0.7),
+		0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 dialog.opened {
-  animation: dialogOpen 0.3s ease-out forwards;
+	animation: dialogOpen 0.3s ease-out forwards;
 }
 
 @keyframes dialogOpen {
-  from {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+	from {
+		opacity: 0;
+		transform: scale(0.6);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
 }
 
 dialog::backdrop {
-  opacity: 0;
-  background-color: black;
-  transition: opacity 250ms ease-in;
+	opacity: 0;
+	background-color: black;
+	transition: opacity 250ms ease-in;
 }
 
 dialog.opened::backdrop {
-  opacity: 0.5;
+	opacity: 0.5;
 }
 
 /* ============================================
@@ -57,83 +60,96 @@ dialog.opened::backdrop {
    ============================================ */
 
 .detail_head {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 150px;
-  background-image: url(../assets/icons/pokeball-icon\ 1.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: 230px 30px;
-  background-blend-mode: soft-light;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 150px;
+	background-image: url(../assets/icons/pokeball-icon\ 1.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: 230px 30px;
+	background-blend-mode: soft-light;
 }
 
 .dialog_headline {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 20px 24px 0;
-  width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 8px;
+	padding: 18px 24px 0;
+	width: 100%;
 }
 
+/* Nummer: klein, gedimmt */
 .dialog_headline p {
-  font-size: 1.2rem;
-  flex-shrink: 0;
+	font-family: "Pixelify Sans", sans-serif;
+	font-size: 0.85rem;
+	color: rgba(255, 255, 255, 0.55);
+	flex-shrink: 0;
+	letter-spacing: 1px;
 }
 
+/* Name: groß, weiß, dominant */
 .dialog_headline h2 {
-  flex: 1;
-  min-width: 0;
-  line-height: 1.15;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+	flex: 1;
+	min-width: 0;
+	font-family: "Boogaloo", system-ui, sans-serif;
+	font-size: 2rem;
+	line-height: 1.1;
+	color: #fff;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 }
 
-.dialog_headline h2.name_md { font-size: 1.5rem; }
-.dialog_headline h2.name_sm { font-size: 1.1rem; }
+.dialog_headline h2.name_md {
+	font-size: 1.6rem;
+}
+.dialog_headline h2.name_sm {
+	font-size: 1.2rem;
+}
 
 .close_btn {
-  position: absolute;
-  top: 35px;
-  right: 30px;
-  width: 32px;
-  height: 32px;
-  font-size: 16px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.2);
-  color: #fff;
-  cursor: pointer;
-  font-family: "Pixelify Sans", sans-serif;
+	position: absolute;
+	top: 35px;
+	right: 30px;
+	width: 32px;
+	height: 32px;
+	font-size: 16px;
+	border: none;
+	border-radius: 50%;
+	background: rgba(0, 0, 0, 0.2);
+	color: #fff;
+	cursor: pointer;
+	font-family: "Pixelify Sans", sans-serif;
 }
 
 .close_btn:hover {
-  background: rgba(0, 0, 0, 0.4);
+	background: rgba(0, 0, 0, 0.4);
 }
 
 .dialog_imgs {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
 }
 
 .detail_sprite > img {
-  width: 123px;
-  height: 120px;
-  transform: translate(35px, 5px);
+	width: 123px;
+	height: 120px;
+	transform: translate(35px, 5px);
 }
 
 .cry_btn {
-  width: 24px;
-  height: 24px;
-  align-self: flex-end;
-  transform: translate(-43px, -63px);
-  border: none;
-  background: none;
-  cursor: pointer;
+	width: 24px;
+	height: 24px;
+	align-self: flex-end;
+	transform: translate(-43px, -63px);
+	border: none;
+	background: none;
+	cursor: pointer;
 }
 
 /* ============================================
@@ -141,81 +157,98 @@ dialog.opened::backdrop {
    ============================================ */
 
 .detail_body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 420px;
-  background-color: white;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
-  overflow: hidden;
-  pointer-events: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 420px;
+	/* Gradient-Top: nimmt die Typ-Farbe des Headers optisch auf und faded sie aus */
+	background: linear-gradient(to bottom, #2a2f42 0px, #1c2030 48px);
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+	overflow: hidden;
+	pointer-events: none;
 }
 
 .detail_body button,
 .detail_body a,
 .detail_body canvas,
 .detail_body .evolution {
-  pointer-events: auto;
+	pointer-events: auto;
 }
 
 .detail_pkm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 16px 8px 8px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 16px 8px 8px;
 }
 
 .dialog_types {
-  display: flex;
-  gap: 8px;
+	display: flex;
+	gap: 8px;
 }
 
 .description {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .detail_description {
-  padding: 6px;
-  text-align: center;
+	padding: 6px 12px;
+	text-align: center;
+	color: #8a90a8;
+	font-size: 0.88rem;
+	line-height: 1.5;
 }
 
 .measures {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  padding: 8px;
+	display: flex;
+	justify-content: center;
+	gap: 16px;
+	padding: 8px;
 }
 
 .measures_style {
-  width: 70px;
-  height: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  background: #e0dbcc;
-  border: 1px solid black;
-  border-radius: 12px;
-  box-shadow:
-    0px 0px 2px rgba(3, 7, 18, 0.1),
-    0px 1px 4px rgba(3, 7, 18, 0.16),
-    0px 3px 10px rgba(3, 7, 18, 0.26);
+	width: 80px;
+	height: 48px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 2px;
+	background: #13161f;
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 14px;
+	color: #eef0f6;
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Label klein & gedimmt, Wert hell & groß */
+.measures_style p:first-child {
+	font-size: 0.6rem;
+	color: #8a90a8;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.measures_style p:last-child {
+	font-family: "Pixelify Sans", sans-serif;
+	font-size: 0.85rem;
+	color: #eef0f6;
 }
 
 .tab_content {
-  width: 100%;
+	width: 100%;
 }
 
 .tab_content:not(.d_none) {
-  display: flex;
-  flex: 1;
+	display: flex;
+	flex: 1;
 }
 
 #tab_content_evo:not(.d_none) {
-  align-items: center;
-  justify-content: center;
+	align-items: center;
+	justify-content: center;
 }
 
 /* ============================================
@@ -223,56 +256,63 @@ dialog.opened::backdrop {
    ============================================ */
 
 .dialog_controls {
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10px;
-  z-index: 10;
+	position: absolute;
+	bottom: 20px;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 10px;
+	z-index: 10;
 }
 
 .dialog_prev,
 .dialog_next {
-  width: 44px;
-  height: 44px;
-  font-size: 24px;
-  border: none;
-  border-radius: 50%;
-  background: #a4121c;
-  color: #fff;
-  font-family: "Pixelify Sans", sans-serif;
-  cursor: pointer;
-  box-shadow: 0 4px 0 #6b0b12;
-  transition: transform 0.08s, box-shadow 0.08s;
+	width: 44px;
+	height: 44px;
+	font-size: 24px;
+	border: none;
+	border-radius: 50%;
+	background: #a4121c;
+	color: #fff;
+	font-family: "Pixelify Sans", sans-serif;
+	cursor: pointer;
+	box-shadow: 0 4px 0 #6b0b12;
+	transition:
+		transform 0.08s,
+		box-shadow 0.08s;
 }
 
 .dialog_prev:hover,
 .dialog_next:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 0 #6b0b12;
+	transform: translateY(-2px);
+	box-shadow: 0 6px 0 #6b0b12;
 }
 
 .dialog_prev:active,
 .dialog_next:active {
-  transform: translateY(4px);
-  box-shadow: 0 1px 0 #6b0b12;
+	transform: translateY(4px);
+	box-shadow: 0 1px 0 #6b0b12;
 }
 
 .tab_btn {
-  background: #ddd;
-  border: none;
-  border-radius: 20px;
-  padding: 6px 20px;
-  font-family: "Pixelify Sans", sans-serif;
-  cursor: pointer;
+	background: rgba(255, 255, 255, 0.08);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 20px;
+	padding: 6px 20px;
+	font-family: "Pixelify Sans", sans-serif;
+	color: #8a90a8;
+	cursor: pointer;
+	transition:
+		background 0.15s,
+		color 0.15s;
 }
 
 .tab_btn.active {
-  background: #a4121c;
-  color: white;
+	background: #a4121c;
+	border-color: #a4121c;
+	color: white;
 }
 
 /* ============================================
@@ -280,20 +320,20 @@ dialog.opened::backdrop {
    ============================================ */
 
 .stat_chart {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-height: 250px;
-  padding: 0 20px 0 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	max-height: 250px;
+	padding: 0 20px 0 0;
 }
 
 .stat_block {
-  width: 100% !important;
-  height: auto !important;
-  max-width: 160px;
-  max-height: 250px;
-  scale: 1.25;
+	width: 100% !important;
+	height: auto !important;
+	max-width: 160px;
+	max-height: 250px;
+	scale: 1.25;
 }
 
 /* ============================================
@@ -301,115 +341,131 @@ dialog.opened::backdrop {
    ============================================ */
 
 .evolution {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  height: 350px;
-  padding: 8px 6px 70px;
-  overflow-y: auto;
-  container-type: inline-size;
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0,
-    black 12px,
-    black calc(100% - 60px),
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0,
-    black 12px,
-    black calc(100% - 60px),
-    transparent 100%
-  );
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	height: 350px;
+	padding: 8px 6px 70px;
+	overflow-y: auto;
+	container-type: inline-size;
+	mask-image: linear-gradient(
+		to bottom,
+		transparent 0,
+		black 12px,
+		black calc(100% - 60px),
+		transparent 100%
+	);
+	-webkit-mask-image: linear-gradient(
+		to bottom,
+		transparent 0,
+		black 12px,
+		black calc(100% - 60px),
+		transparent 100%
+	);
 }
 
-.evolution::-webkit-scrollbar { width: 4px; }
-.evolution::-webkit-scrollbar-thumb { background: #e8dcc0; border-radius: 2px; }
-.evolution::-webkit-scrollbar-track { background: transparent; }
+.evolution::-webkit-scrollbar {
+	width: 4px;
+}
+.evolution::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.12);
+	border-radius: 2px;
+}
+.evolution::-webkit-scrollbar-track {
+	background: transparent;
+}
 
 .evo_chain {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+	width: 100%;
 }
 
 .evo_level {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+	width: 100%;
 }
 
 .evo_connector {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .evo_connector svg {
-  width: 16px;
-  height: 16px;
-  fill: none;
-  stroke: #c0392b;
-  stroke-width: 2.5;
+	width: 16px;
+	height: 16px;
+	fill: none;
+	stroke: #c0392b;
+	stroke-width: 2.5;
 }
 
 .evo_stage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 10px;
-  border-radius: 14px;
-  background: #fdf8ee;
-  border: 2px solid #e8dcc0;
-  transition: transform 0.15s ease, border-color 0.15s ease;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 10px;
+	border-radius: 14px;
+	background: #13161f;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	transition:
+		transform 0.15s ease,
+		border-color 0.15s ease;
 }
 
 .evo_stage:hover {
-  transform: translateY(-3px);
-  border-color: #c0392b;
+	transform: translateY(-3px);
+	border-color: rgba(255, 255, 255, 0.25);
 }
 
 .evo_stage img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
+	width: 60px;
+	height: 60px;
+	object-fit: contain;
 }
 
 .evo_stage_name {
-  font-family: "Pixelify Sans", sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  color: #4a3c28;
-  text-transform: capitalize;
+	font-family: "Pixelify Sans", sans-serif;
+	font-size: 11px;
+	font-weight: 700;
+	color: #eef0f6;
+	text-transform: capitalize;
 }
 
 .evo_stage.evo_current {
-  background: #fdebea;
-  border-color: #c0392b;
-  box-shadow: 0 0 0 2px rgba(192, 57, 43, 0.25);
+	background: rgba(164, 18, 28, 0.15);
+	border-color: #a4121c;
+	box-shadow: 0 0 0 2px rgba(164, 18, 28, 0.2);
 }
 
 .evo_method {
-  font-family: "Pixelify Sans", sans-serif;
-  font-size: 9px;
-  color: #8a7a5c;
-  background: #f1ead9;
-  padding: 2px 6px;
-  border-radius: 8px;
-  white-space: nowrap;
+	font-family: "Pixelify Sans", sans-serif;
+	font-size: 9px;
+	color: #8a90a8;
+	background: rgba(255, 255, 255, 0.07);
+	padding: 2px 6px;
+	border-radius: 8px;
+	white-space: nowrap;
 }
 
 @container (max-width: 300px) {
-  .evo_stage { padding: 8px; }
-  .evo_stage img { width: 48px; height: 48px; }
-  .evo_stage_name { font-size: 10px; }
+	.evo_stage {
+		padding: 8px;
+	}
+	.evo_stage img {
+		width: 48px;
+		height: 48px;
+	}
+	.evo_stage_name {
+		font-size: 10px;
+	}
 }
